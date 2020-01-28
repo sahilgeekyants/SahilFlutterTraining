@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'Product.dart';
-import 'RegistrationForm.dart';
-import 'Address.dart';
+import 'package:hello_dart/product.dart';
+import 'package:hello_dart/registration_form.dart';
+import 'package:hello_dart/address.dart';
 void main(List<String> arguments) {
   var p1;
   int i,n;

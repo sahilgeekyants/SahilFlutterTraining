@@ -1,12 +1,6 @@
-
-import 'package:university_structure/hierarchy.dart';
+import 'package:university_structure/handler.dart';
 
 void main() {
-  // print('--Welcome to the government education portal--');
-  // var object1 = Person();
-  // var object2 = Student();
-  //print(arguments);
   Handler handler = Handler();
   handler.begin();
 }
-

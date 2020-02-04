@@ -16,7 +16,7 @@ class Handler{
     do{
       print('---For new Booking---');
       addNewBooking();
-      stdout.write('\n Do you want to make a new booking (y/n) : ');
+      stdout.write('\n ---Booking Confirmed---\n\nDo you want to make a new booking (y/n) : ');
       bookAgain = stdin.readLineSync();
     } while(bookAgain == 'y' || bookAgain == 'Y');
   }

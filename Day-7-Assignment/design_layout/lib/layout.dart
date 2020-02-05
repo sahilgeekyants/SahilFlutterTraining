@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'components.dart';
 class Layout extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -17,54 +18,20 @@ class Layout extends StatelessWidget{
                       Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only( bottom: 5),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            constraints: BoxConstraints(
-                              minHeight: (480/6)*2-5, //double.infinity,
-                              minWidth: 300/2,
-                            ),
-                            child: Center(
-                              child: Icon(Icons.widgets ,color: Colors.white,),
-                            )
+                          ContainerWidget(height: (480/6)*2-5, width: 300/2,
+                            color: Colors.green, icon: Icons.widgets,bottomMargin: 5
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top:5),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            constraints: BoxConstraints(
-                              minHeight: (480/6)*2-5, //double.infinity,
-                              minWidth: 300/2,
-                            ),
-                            child: Center(
-                              child: Icon(Icons.send ,color: Colors.white,),
-                            )
+                          ContainerWidget(height: (480/6)*2-5, width: 300/2, 
+                            color: Colors.red, icon: Icons.send,topMargin: 5
                           ),
                         ],
                       ),
                       Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only( bottom: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            constraints: BoxConstraints(
-                              minHeight: (480/6)-10, //double.infinity,
-                              minWidth: 300/2,
-                            ),
-                            child: Center(
-                              child: Icon(Icons.wifi ,color: Colors.white,),
-                            )
+                          ContainerWidget(height: (480/6)-10, width: 300/2, 
+                            color: Colors.blue, icon: Icons.wifi,bottomMargin: 10
                           ),
-
                           //pending from here
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,67 +39,23 @@ class Layout extends StatelessWidget{
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only( bottom: 5,right: 5),
-                                    decoration: BoxDecoration(
-                                      color: Colors.yellow,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    constraints: BoxConstraints(
-                                      minHeight: (480/6)*2-5, //double.infinity,
-                                      minWidth: 300/4-5,
-                                    ),
-                                    child: Center(
-                                      child: Icon(Icons.view_compact ,color: Colors.white,),
-                                    )
+                                  ContainerWidget(height: (480/6)*2-5, width: 300/4-5, 
+                                    color: Colors.yellow, icon: Icons.view_compact,bottomMargin: 5,rightMargin: 5,
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(top:5,right: 5),
-                                    decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    constraints: BoxConstraints(
-                                      minHeight: (480/6)-5, //double.infinity,
-                                      minWidth: 300/4-5,
-                                    ),
-                                    child: Center(
-                                      child: Icon(Icons.bluetooth ,color: Colors.white,),
-                                    )
-                                ),
+                                  ContainerWidget(height: (480/6)-5, width: 300/4-5, 
+                                    color: Colors.red, icon: Icons.bluetooth,topMargin: 5,rightMargin: 5,
+                                  ),
                                 ],
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.only( bottom: 5,left: 5),
-                                    decoration: BoxDecoration(
-                                      color: Colors.brown,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    constraints: BoxConstraints(
-                                      minHeight: (480/6)-5, //double.infinity,
-                                      minWidth: 300/4-5,
-                                    ),
-                                    child: Center(
-                                      child: Icon(Icons.print ,color: Colors.white,),
-                                    )
+                                  ContainerWidget(height: (480/6)-5, width: 300/4-5, 
+                                    color: Colors.brown, icon: Icons.print,bottomMargin: 5,leftMargin: 5,
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(top:5,left: 5),
-                                    decoration: BoxDecoration(
-                                      color: Colors.indigo,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    constraints: BoxConstraints(
-                                      minHeight: (480/6)*2-5, //double.infinity,
-                                      minWidth: 300/4-5,
-                                    ),
-                                    child: Center(
-                                      child: Icon(Icons.airline_seat_flat ,color: Colors.white,),
-                                    )
-                                ),
+                                  ContainerWidget(height: (480/6)*2-5, width: 300/4-5, 
+                                    color: Colors.indigo, icon: Icons.airline_seat_flat,topMargin: 5,leftMargin: 5,
+                                  ),
                                 ],
                               )
                             ],
@@ -144,50 +67,20 @@ class Layout extends StatelessWidget{
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.pink,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        constraints: BoxConstraints(
-                          minHeight: 480/6, //double.infinity,
-                          minWidth: 300*3/4+5,
-                        ),
-                        child: Center(
-                          child: Icon(Icons.battery_alert ,color: Colors.white,),
-                        )
+                      ContainerWidget(height: (480/6), width: 300*3/4+5, 
+                        color: Colors.pink, icon: Icons.battery_alert,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.purple,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        constraints: BoxConstraints(
-                          minHeight: 480/6, //double.infinity,
-                          minWidth: 300/4-5,
-                        ),
-                        child: Center(
-                          child: Icon(Icons.desktop_windows ,color: Colors.white,),
-                        )
-                      )
+                      ContainerWidget(height: (480/6), width: 300/4-5, 
+                        color: Colors.purple, icon: Icons.desktop_windows,
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        constraints: BoxConstraints(
-                          minHeight: 480/6, //double.infinity,
-                          minWidth: 310,
-                        ),
-                        child: Center(
-                          child: Icon(Icons.radio ,color: Colors.white,),
-                        )
-                      )
+                      ContainerWidget(height: (480/6), width: 310, 
+                        color: Colors.blue, icon: Icons.radio,
+                      ),
                     ],
                   ),
                   

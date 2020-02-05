@@ -1,6 +1,6 @@
 import 'package:design_layout/layout.dart';
 import 'package:flutter/material.dart';
-
+import 'package:design_layout/layout_2.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {

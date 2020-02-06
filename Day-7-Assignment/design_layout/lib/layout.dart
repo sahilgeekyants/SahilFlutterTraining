@@ -1,95 +1,119 @@
+import 'package:design_layout/components.dart';
 import 'package:flutter/material.dart';
-import 'components.dart';
-class Layout extends StatelessWidget{
+class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-          color:Colors.indigo,
-          child: SafeArea(
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: Container(
+        color: Colors.indigo,
+        child: SafeArea(
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 4,
+                  child: Row(
                     children: <Widget>[
-                      Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          ContainerWidget(height: (480/6)*2-5, width: 300/2,
-                            color: Colors.green, icon: Icons.widgets,bottomMargin: 5
-                          ),
-                          ContainerWidget(height: (480/6)*2-5, width: 300/2, 
-                            color: Colors.red, icon: Icons.send,topMargin: 5
-                          ),
-                        ],
-                      ),
-                      Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          ContainerWidget(height: (480/6)-10, width: 300/2, 
-                            color: Colors.blue, icon: Icons.wifi,bottomMargin: 10
-                          ),
-                          //pending from here
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: <Widget>[
-                                  ContainerWidget(height: (480/6)*2-5, width: 300/4-5, 
-                                    color: Colors.yellow, icon: Icons.view_compact,bottomMargin: 5,rightMargin: 5,
-                                  ),
-                                  ContainerWidget(height: (480/6)-5, width: 300/4-5, 
-                                    color: Colors.red, icon: Icons.bluetooth,topMargin: 5,rightMargin: 5,
-                                  ),
-                                ],
+                      Expanded(
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: DynamicContainer(color: Colors.green[700],icon: Icons.widgets ,
+                                bottomMargin: 2.5,topMargin: 5,leftMargin: 5,rightMargin: 2.5,
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            ),
+                            Expanded(
+                              child: DynamicContainer(color: Colors.deepOrange,icon: Icons.send ,
+                                bottomMargin: 2.5,topMargin: 2.5,leftMargin: 5,rightMargin: 2.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(
+                              child: DynamicContainer(color: Colors.blue,icon: Icons.wifi ,
+                                bottomMargin: 2.5,topMargin: 5,leftMargin: 2.5,rightMargin: 5,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: Row(
                                 children: <Widget>[
-                                  ContainerWidget(height: (480/6)-5, width: 300/4-5, 
-                                    color: Colors.brown, icon: Icons.print,bottomMargin: 5,leftMargin: 5,
+                                  Expanded(
+                                    child: Column(
+                                      children: <Widget>[
+                                        Expanded(
+                                          flex: 2,
+                                          child: DynamicContainer(color: Colors.yellowAccent,icon: Icons.view_compact ,
+                                            bottomMargin: 2.5,topMargin: 2.5,leftMargin: 2.5,rightMargin: 2.5,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: DynamicContainer(color: Colors.redAccent[700],icon: Icons.bluetooth ,
+                                            bottomMargin: 2.5,topMargin: 2.5,leftMargin: 2.5,rightMargin: 2.5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  ContainerWidget(height: (480/6)*2-5, width: 300/4-5, 
-                                    color: Colors.indigo, icon: Icons.airline_seat_flat,topMargin: 5,leftMargin: 5,
+                                  Expanded(
+                                    child: Column(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: DynamicContainer(color: Colors.brown,icon: Icons.print ,
+                                            bottomMargin: 2.5,topMargin: 2.5,leftMargin: 5,rightMargin: 5,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 2,
+                                          child: DynamicContainer(color: Colors.indigo,icon: Icons.airline_seat_flat ,
+                                            bottomMargin: 2.5,topMargin: 2.5,leftMargin: 2.5,rightMargin: 5,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               )
-                            ],
-                          )
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                ),
+                Expanded(
+                  child: Row(
                     children: <Widget>[
-                      ContainerWidget(height: (480/6), width: 300*3/4+5, 
-                        color: Colors.pink, icon: Icons.battery_alert,
+                      Expanded(
+                        flex: 3,
+                        child: DynamicContainer(color: Colors.pink,icon: Icons.battery_alert ,
+                          bottomMargin: 2.5,topMargin: 2.5,leftMargin: 5,rightMargin: 2.5,
+                        ),
                       ),
-                      ContainerWidget(height: (480/6), width: 300/4-5, 
-                        color: Colors.purple, icon: Icons.desktop_windows,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      ContainerWidget(height: (480/6), width: 310, 
-                        color: Colors.blue, icon: Icons.radio,
+                      Expanded(
+                        child: DynamicContainer(color: Colors.purple,icon: Icons.desktop_windows ,
+                          bottomMargin: 2.5,topMargin: 2.5,leftMargin: 2.5,rightMargin: 5,
+                        ),
                       ),
                     ],
+                  )
+                ),
+                Expanded(
+                  child: DynamicContainer(color: Colors.blue,icon: Icons.radio ,
+                    bottomMargin: 5,topMargin: 2.5,leftMargin: 5,rightMargin: 5,
                   ),
-                  
-                ],
-              ),
-            )
+                ),
+                
+              ],
             ),
+          ),
         ),
-      );
+      ),
+    );
   }
-
 }

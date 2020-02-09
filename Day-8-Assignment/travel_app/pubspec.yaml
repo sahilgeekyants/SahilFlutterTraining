@@ -1,0 +1,37 @@
+name: Travel_India
+description: A travalor guide app for India.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter 
+  flutter_launcher_icons: "^0.7.0"
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/ic_launcher_travel_app.png"
+  image_path_android: "assets/ic_launcher_travel_app.png"
+
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  assets:
+    - logo_travel_app.png
+  fonts:
+    - family: Montserrat
+      fonts: 
+        - asset: fonts/Montserrat-Regular.ttf

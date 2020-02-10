@@ -1,11 +1,12 @@
+import 'package:Travel_India/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat',fontSize: 20.0);
+    TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     return Scaffold(
-      backgroundColor: Colors.indigo,
+      backgroundColor: Colors.teal,
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
         child: Center(
@@ -17,17 +18,17 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(
-                    height: 70.0,
-                    child: Container(
-                      child: Image.asset(
-                      "assets/logo_travel_app.png",
-                      fit: BoxFit.contain,
-                      ),
-                    )
-                  ),
+                      height: 70.0,
+                      child: Container(
+                        child: Image.asset(
+                          "assets/logo_travel_app.png",
+                          fit: BoxFit.contain,
+                        ),
+                      )),
                   SizedBox(
                     height: 85.0,
-                    child: Text("Travel India",
+                    child: Text(
+                      "Travel India",
                       textAlign: TextAlign.center,
                       style: style.copyWith(
                         color: Colors.teal,
@@ -39,36 +40,38 @@ class LoginPage extends StatelessWidget {
                     obscureText: false,
                     style: style,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      hintText: "Name",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32.0)
-                      )
-                    ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        hintText: "Name",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32.0))),
                   ),
-                  SizedBox(height: 25.0,),
+                  SizedBox(
+                    height: 25.0,
+                  ),
                   TextField(
                     obscureText: true,
                     style: style,
                     decoration: InputDecoration(
-                      contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      hintText: "Password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(32.0)
-                      )
-                    ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        hintText: "Password",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32.0))),
                   ),
-                  SizedBox(height: 5.0,),
+                  SizedBox(
+                    height: 5.0,
+                  ),
                   SizedBox(
                     height: 30.0,
                     width: 220,
-                    child: Text("Forgot Password",
+                    child: Text(
+                      "Forgot Password",
                       textAlign: TextAlign.right,
                       style: style.copyWith(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13
-                      ),
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13),
                     ),
                   ),
                   Material(
@@ -78,8 +81,14 @@ class LoginPage extends StatelessWidget {
                     child: MaterialButton(
                       minWidth: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      onPressed: () {},
-                      child: Text("Login",
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
+                      child: Text(
+                        "Login",
                         textAlign: TextAlign.center,
                         style: style.copyWith(
                           color: Colors.white,
@@ -88,7 +97,27 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 5.0,),
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  Material(
+                    elevation: 5.0,
+                    borderRadius: BorderRadius.circular(30.0),
+                    color: Colors.teal,
+                    child: MaterialButton(
+                      minWidth: MediaQuery.of(context).size.width,
+                      padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                      onPressed: () {},
+                      child: Text(
+                        "Sign up",
+                        textAlign: TextAlign.center,
+                        style: style.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

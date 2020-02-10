@@ -31,6 +31,14 @@ flutter:
 
   assets:
     - logo_travel_app.png
+    - Hampi.jpg
+    - Lachen.jpg
+    - Mysore-Dussehra.jpg
+    - Navaratri-in-Vadodara.jpg
+    - Shillong.jpg
+    - Srinagar.jpg
+    - Tawang-Gate.jpg
+    - Sundarbans.jpg
   fonts:
     - family: Montserrat
       fonts: 

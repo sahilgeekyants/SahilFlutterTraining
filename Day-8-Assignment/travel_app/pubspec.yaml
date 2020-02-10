@@ -40,6 +40,12 @@ flutter:
     - Tawang-Gate.jpg
     - Sundarbans.jpg
   fonts:
+    - family: DancingScript
+      fonts:
+        - asset: fonts/DancingScript_Medium.ttf
+    - family: IndieFlower
+      fonts:
+        - asset: fonts/IndieFlower_Regular.ttf
     - family: Montserrat
       fonts: 
         - asset: fonts/Montserrat-Regular.ttf

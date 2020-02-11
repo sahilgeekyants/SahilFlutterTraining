@@ -1,6 +1,7 @@
 import 'dart:math';
-import 'package:Travel_India/data.dart';
 import 'package:flutter/material.dart';
+import 'package:Travel_India/data.dart';
+import 'package:Travel_India/navigation_widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -104,21 +105,6 @@ class HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: navigationWidgetTabs.elementAt(selectedBottomNavigationTab),
-
-      // body: ListWidget(
-      //   allDestinationsData: destinations,
-      // ),
-
-      // body: DetailWidget(
-      //   destinationLocation: destinations[_index].elementAt(1),
-      //   destinationDetail: destinations[_index].elementAt(2),
-      // ),
-
-      // body: HomeWidget(
-      //   destinationImagePath: destinations[_index].elementAt(0),
-      //   destinationLocation: destinations[_index].elementAt(1),
-      // ),
-
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           _update(random.nextInt(destinationsCount));
@@ -184,167 +170,6 @@ class HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class HomeWidget extends StatelessWidget {
-  final String destinationImagePath;
-  final String destinationLocation;
-  HomeWidget(
-      {@required this.destinationImagePath,
-      @required this.destinationLocation});
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Image.asset(
-                destinationImagePath,
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.teal,
-                    ),
-                    Text(
-                      destinationLocation,
-                      style: TextStyle(
-                          fontFamily: 'DancingScript',
-                          fontSize: 25,
-                          color: Colors.teal),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class DetailWidget extends StatelessWidget {
-  final String destinationLocation;
-  final String destinationDetail;
-  DetailWidget(
-      {@required this.destinationLocation, @required this.destinationDetail});
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.fromLTRB(5, 10, 5, 30),
-        color: Colors.lime[100],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.teal,
-                      size: 23,
-                    ),
-                    Text(
-                      destinationLocation,
-                      style: TextStyle(
-                        fontFamily: 'IndieFlower',
-                        fontSize: 23,
-                        color: Colors.teal,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 4,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: Text(
-                  destinationDetail,
-                  style: TextStyle(
-                    fontFamily: 'DancingScript',
-                    fontSize: 25,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ListWidget extends StatefulWidget {
-  final Map allDestinationsData;
-  ListWidget({@required this.allDestinationsData});
-  @override
-  State<StatefulWidget> createState() {
-    return ListWidgetState(allDestinationsData);
-  }
-}
-
-class ListWidgetState extends State<ListWidget> {
-  final Map allDestinationsData;
-  ListWidgetState(this.allDestinationsData);
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: Column(
-            /*children: <Widget>[
-            SizedBox(
-              height: 30,
-            ),
-            ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: allDestinationsData.length,
-              itemBuilder: (BuildContext context, int _itemIndex) {
-                return ListTile(
-                  dense: true,
-                  onTap: () {},
-                  leading: Icon(
-                    Icons.location_on,
-                    color: Colors.white,
-                    size: 23,
-                  ),
-                  title: Text(
-                    allDestinationsData[_itemIndex].elementAt(1),
-                    style: TextStyle(
-                      fontFamily: 'Montserrat',
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],*/
-            ),
       ),
     );
   }

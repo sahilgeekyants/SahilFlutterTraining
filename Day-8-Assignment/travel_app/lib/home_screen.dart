@@ -11,7 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  static Map destinations = Data.getDestinationsData();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey(); // key
+  static Map destinations = Data.getDestinationsData(); //getting Data
   int destinationsCount = destinations.length;
   static int _index = 0;
   int selectedBottomNavigationTab = 0;
@@ -53,6 +54,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedBottomNavigationTab, // change on tapping
@@ -108,6 +110,17 @@ class HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           _update(random.nextInt(destinationsCount));
+          // Showing SnackBar
+          scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text(
+                'Now Showing- ${destinations[_index].elementAt(1)}',
+                textAlign: TextAlign.center,
+              ),
+              duration: Duration(milliseconds: 500),
+              backgroundColor: Colors.teal,
+            ),
+          );
         },
         label: Text(
           'Next',

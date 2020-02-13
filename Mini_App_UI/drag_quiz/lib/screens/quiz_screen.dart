@@ -15,16 +15,17 @@ class QuizState extends State<Quiz> {
   List<Map<int, String>> quizImages;
   List<Map<int, Color>> quizColors;
   List<String> rightWrongImages;
-  List<int> imageScores; // Initial State: -1, Correct: 1, Wrong: 0
+  List<int> scoreList; // Initial State: -1, Correct: 1, Wrong: 0
   int correctCount = 0;
   int incorrectCount = 0;
+
   @override
   void initState() {
     data = Data();
     quizImages = data.imageData;
     quizColors = data.colorData;
     rightWrongImages = data.rightWrongImageData;
-    imageScores = [-1, -1, -1, -1, -1, -1, -1];
+    scoreList = [-1, -1, -1, -1, -1, -1, -1];
     quizImages.shuffle();
     quizColors.shuffle();
     super.initState();
@@ -36,13 +37,15 @@ class QuizState extends State<Quiz> {
       key: scaffoldKey,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          for (int item in imageScores) {
+          //counting the correct and incorrect responses
+          for (int item in scoreList) {
             if (item == 1) {
               correctCount++;
             } else if (item == 0) {
               incorrectCount++;
             }
           }
+          // Showing scoreCard in SnackBar
           scaffoldKey.currentState.showSnackBar(
             SnackBar(
               content: Text(
@@ -52,10 +55,11 @@ class QuizState extends State<Quiz> {
               duration: Duration(seconds: 2),
             ),
           );
+          //Game Reset
           setState(() {
             quizImages.shuffle();
             quizColors.shuffle();
-            imageScores = [-1, -1, -1, -1, -1, -1, -1];
+            scoreList = [-1, -1, -1, -1, -1, -1, -1];
             correctCount = 0;
             incorrectCount = 0;
           });
@@ -79,7 +83,8 @@ class QuizState extends State<Quiz> {
                     children: <Widget>[
                       Container(
                         height: MediaQuery.of(context).size.height / 9,
-                        child: (imageScores[index] == -1)
+                        //show Draggable if not attempted otherwise show Tick/cross image
+                        child: (scoreList[index] == -1)
                             ? Draggable(
                                 data: [
                                   index,
@@ -103,7 +108,7 @@ class QuizState extends State<Quiz> {
                                 ),
                                 childWhenDragging: Container(),
                               )
-                            : (imageScores[index] == 1)
+                            : (scoreList[index] == 1)
                                 ? Image.asset(
                                     rightWrongImages[0],
                                     fit: BoxFit.fitHeight,
@@ -116,7 +121,6 @@ class QuizState extends State<Quiz> {
                       Container(
                         height: 100,
                         width: MediaQuery.of(context).size.width * 0.5,
-                        constraints: BoxConstraints(),
                         color: quizColors.elementAt(index).values.elementAt(0),
                         child: DragTarget(
                           builder: (context, List<List<int>> candidateData,
@@ -130,7 +134,8 @@ class QuizState extends State<Quiz> {
                             return true;
                           },
                           onAccept: (List<int> data) {
-                            imageScores[data[0]] = (data[1] ==
+                            //Updating the scores - 1 for correct & 0 for incorrect
+                            scoreList[data[0]] = (data[1] ==
                                     quizColors
                                         .elementAt(index)
                                         .keys
@@ -138,7 +143,6 @@ class QuizState extends State<Quiz> {
                                 ? 1
                                 : 0;
                             setState(() {});
-                            print(data);
                           },
                         ),
                       ),

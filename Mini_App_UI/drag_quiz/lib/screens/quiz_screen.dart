@@ -10,27 +10,54 @@ class Quiz extends StatefulWidget {
 }
 
 class QuizState extends State<Quiz> {
-  List<String> quizImages = Data().imageData;
-  List<Color> quizColors = Data().colorData;
-  List<int> answers = Data().answersequence;
-  List<String> rightWrongImages = Data().rightWrongImageData;
-  List<int> imageScores = [
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1,
-    -1
-  ]; // Initial State: -1, Correct: 1, Wrong: 0
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey(); // key
+  Data data;
+  List<Map<int, String>> quizImages;
+  List<Map<int, Color>> quizColors;
+  List<String> rightWrongImages;
+  List<int> imageScores; // Initial State: -1, Correct: 1, Wrong: 0
+  int correctCount = 0;
+  int incorrectCount = 0;
+  @override
+  void initState() {
+    data = Data();
+    quizImages = data.imageData;
+    quizColors = data.colorData;
+    rightWrongImages = data.rightWrongImageData;
+    imageScores = [-1, -1, -1, -1, -1, -1, -1];
+    quizImages.shuffle();
+    quizColors.shuffle();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          for (int item in imageScores) {
+            if (item == 1) {
+              correctCount++;
+            } else if (item == 0) {
+              incorrectCount++;
+            }
+          }
+          scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text(
+                'Correct: $correctCount  Incorrect: $incorrectCount',
+                textAlign: TextAlign.center,
+              ),
+              duration: Duration(seconds: 2),
+            ),
+          );
           setState(() {
+            quizImages.shuffle();
+            quizColors.shuffle();
             imageScores = [-1, -1, -1, -1, -1, -1, -1];
+            correctCount = 0;
+            incorrectCount = 0;
           });
         },
         child: Icon(Icons.rotate_left),
@@ -56,14 +83,20 @@ class QuizState extends State<Quiz> {
                             ? Draggable(
                                 data: [
                                   index,
-                                  answers.elementAt(index),
+                                  quizImages.elementAt(index).keys.elementAt(0),
                                 ],
                                 child: Image.asset(
-                                  quizImages.elementAt(index),
+                                  quizImages
+                                      .elementAt(index)
+                                      .values
+                                      .elementAt(0),
                                   fit: BoxFit.fitHeight,
                                 ),
                                 feedback: Image.asset(
-                                  quizImages.elementAt(index),
+                                  quizImages
+                                      .elementAt(index)
+                                      .values
+                                      .elementAt(0),
                                   height:
                                       MediaQuery.of(context).size.height / 9,
                                   fit: BoxFit.fitHeight,
@@ -84,7 +117,7 @@ class QuizState extends State<Quiz> {
                         height: 100,
                         width: MediaQuery.of(context).size.width * 0.5,
                         constraints: BoxConstraints(),
-                        color: quizColors[index],
+                        color: quizColors.elementAt(index).values.elementAt(0),
                         child: DragTarget(
                           builder: (context, List<List<int>> candidateData,
                               rejectedData) {
@@ -97,14 +130,15 @@ class QuizState extends State<Quiz> {
                             return true;
                           },
                           onAccept: (List<int> data) {
-                            //print(data);
-                            imageScores[data[0]] = (data[1] == index) ? 1 : 0;
-                            // if (data[1] == index) {
-                            //   imageScores[data[0]] = 1;
-                            // } else {
-                            //   imageScores[data[0]] = 0;
-                            // }
+                            imageScores[data[0]] = (data[1] ==
+                                    quizColors
+                                        .elementAt(index)
+                                        .keys
+                                        .elementAt(0))
+                                ? 1
+                                : 0;
                             setState(() {});
+                            print(data);
                           },
                         ),
                       ),

@@ -81,7 +81,6 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //key: Key('1'),
                     //controller: _nameController,
                     autovalidate: nameValidate, // autovalidate flag
                     validator: _validator.nameValidator, //validator function
@@ -298,6 +297,8 @@ class SignupScreenState extends State<SignupScreen> {
                     ),
                     onPressed: () {
                       if (_globalKey.currentState.validate()) {
+                        _globalKey.currentState.save();
+                        //save data fields here to use further in app
                         Navigator.pushNamed(context, '/home_screen');
                       }
                     },

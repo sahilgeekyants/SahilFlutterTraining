@@ -3,6 +3,7 @@ import 'package:registration/screens/home.dart';
 import 'package:registration/screens/login.dart';
 import 'package:registration/screens/select.dart';
 import 'package:registration/screens/signup.dart';
+import 'package:registration/screens/splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       ),
       home: null,
       routes: {
-        '/': (context) => SelectScreen(),
+        '/': (context) => SplashScreen(),
+        '/select_screen': (context) => SelectScreen(),
         '/login_screen': (context) => LoginScreen(),
         '/signup_screen': (context) => SignupScreen(),
         '/home_screen': (context) => Home(),

@@ -67,9 +67,11 @@ class HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           createAlertDialog(context).then((onValue) {
-            setState(() {
-              cities.add(onValue);
-            });
+            if (onValue.isNotEmpty) {
+              setState(() {
+                cities.add(onValue);
+              });
+            }
           });
         },
         child: Icon(Icons.add),

@@ -23,18 +23,24 @@ class SelectScreen extends StatelessWidget {
                 flex: 2,
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(top: screenHeight / 20),
-                      child: Image.asset(
-                        "asset/images/logo_travel_app.png",
-                        fit: BoxFit.fitWidth,
+                    Expanded(
+                      flex: 4,
+                      child: Container(
+                        margin: EdgeInsets.only(top: screenHeight * 0.04),
+                        child: Image.asset(
+                          "asset/images/logo_travel_app.png",
+                          fit: BoxFit.fitWidth,
+                        ),
                       ),
                     ),
-                    Container(
-                      child: Text(
-                        "Travel India",
-                        textAlign: TextAlign.center,
-                        style: style.copyWith(color: Colors.teal),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        child: Text(
+                          "Travel India",
+                          textAlign: TextAlign.center,
+                          style: style.copyWith(color: Colors.teal),
+                        ),
                       ),
                     ),
                   ],

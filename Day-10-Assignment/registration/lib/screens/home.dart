@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: Text('Sign Up Successful'),
+          child: Text('Welcome to Home'),
         ),
       ),
     );

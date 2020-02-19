@@ -23,11 +23,6 @@ class SignupScreenState extends State<SignupScreen> {
       showPassword,
       showConfirmPassword;
   Validator _validator;
-  // TextEditingController _nameController,
-  //     _emailController,
-  //     _phoneNoController,
-  //     _passwordController,
-  //     _confirmPasswordController;
   String confirmPasswordValidation(String value) {
     _globalKey.currentState.save();
     return _validator.confirmPasswordValidator(value, password);
@@ -40,11 +35,6 @@ class SignupScreenState extends State<SignupScreen> {
     nameValidate = emailValidate = phoneNoValidate = passwordValidate =
         confirmPasswordValidate = showPassword = showConfirmPassword = false;
     _validator = Validator();
-    // _nameController = TextEditingController();
-    // _emailController = TextEditingController();
-    // _phoneNoController = TextEditingController();
-    // _passwordController = TextEditingController();
-    // _confirmPasswordController = TextEditingController();
   }
 
   @override
@@ -81,7 +71,6 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //controller: _nameController,
                     autovalidate: nameValidate, // autovalidate flag
                     validator: _validator.nameValidator, //validator function
                     onTap: () {
@@ -114,11 +103,9 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //controller: _emailController,
                     autovalidate: emailValidate, // autovalidate flag
                     validator: _validator.emailValidator, //validator function
                     onTap: () {
-                      //perform action here like setState().
                       setState(() {
                         emailValidate = true;
                       });
@@ -148,7 +135,6 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //controller: _phoneNoController,
                     autovalidate: phoneNoValidate, // autovalidate flag
                     validator: _validator.phoneValidator, //validator function
                     onTap: () {
@@ -184,7 +170,6 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //controller: _passwordController,
                     autovalidate: passwordValidate, // autovalidate flag
                     validator:
                         _validator.passwordValidator, //validator function
@@ -234,11 +219,9 @@ class SignupScreenState extends State<SignupScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
-                    //controller: _confirmPasswordController,
                     autovalidate: confirmPasswordValidate, // autovalidate flag
                     validator: confirmPasswordValidation, //validator function
                     onTap: () {
-                      //perform action here like setState().
                       setState(() {
                         confirmPasswordValidate = true;
                       });

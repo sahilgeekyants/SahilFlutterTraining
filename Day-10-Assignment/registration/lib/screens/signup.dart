@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:registration/components/validators.dart';
 
-GlobalKey<FormState> _globalKey = GlobalKey();
+final GlobalKey<FormState> _signUpFormKey = GlobalKey<FormState>();
 
 class SignupScreen extends StatefulWidget {
   @override
@@ -24,7 +24,7 @@ class SignupScreenState extends State<SignupScreen> {
       showConfirmPassword;
   Validator _validator;
   String confirmPasswordValidation(String value) {
-    _globalKey.currentState.save();
+    _signUpFormKey.currentState.save();
     return _validator.confirmPasswordValidator(value, password);
   }
 
@@ -64,7 +64,7 @@ class SignupScreenState extends State<SignupScreen> {
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Form(
-            key: _globalKey,
+            key: _signUpFormKey,
             child: ListView(
               children: <Widget>[
                 SizedBox(height: screenHeight * 0.05),
@@ -279,8 +279,8 @@ class SignupScreenState extends State<SignupScreen> {
                       style: style,
                     ),
                     onPressed: () {
-                      if (_globalKey.currentState.validate()) {
-                        _globalKey.currentState.save();
+                      if (_signUpFormKey.currentState.validate()) {
+                        _signUpFormKey.currentState.save();
                         //save data fields here to use further in app
                         Navigator.pushNamed(context, '/home_screen');
                       }

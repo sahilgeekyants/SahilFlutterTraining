@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:registration/components/validators.dart';
 
-GlobalKey<FormState> _globalKey = GlobalKey();
-GlobalKey _scaffoldKey = GlobalKey();
+final GlobalKey<FormState> _loginFormKey = GlobalKey<FormState>();
+final GlobalKey<ScaffoldState> _loginScaffoldKey = GlobalKey<ScaffoldState>();
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,7 +15,11 @@ class LoginScreenState extends State<LoginScreen> {
   String globalPassword;
   String email, password, confirmPassword;
   TextStyle style;
-  TextEditingController confirmPasswordController;
+
+  TextEditingController emailController,
+      passwordController,
+      confirmPasswordController;
+
   bool emailValidate,
       passwordValidate,
       confirmPasswordValidate,
@@ -24,7 +28,7 @@ class LoginScreenState extends State<LoginScreen> {
   Validator _validator;
 
   String confirmPasswordValidation(String value) {
-    _globalKey.currentState.save();
+    _loginFormKey.currentState.save();
     return _validator.confirmPasswordValidator(value, password);
   }
 
@@ -78,10 +82,22 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
+  void showSnackBar(String snackBarMessage) {
+    var snackBar = SnackBar(
+      duration: Duration(seconds: 2),
+      content: Text(snackBarMessage),
+      action: SnackBarAction(
+          label: 'Hide',
+          onPressed: _loginScaffoldKey.currentState.hideCurrentSnackBar),
+    );
+    _loginScaffoldKey.currentState.showSnackBar(snackBar);
+  }
+
   @override
   void initState() {
     super.initState();
     globalPassword = 'Pass@1234';
+    passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
     emailValidate = passwordValidate =
@@ -94,7 +110,7 @@ class LoginScreenState extends State<LoginScreen> {
     screenHeight = MediaQuery.of(context).size.height;
     screenHeight = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _scaffoldKey,
+      key: _loginScaffoldKey,
       appBar: AppBar(
         leading: GestureDetector(
           child: Icon(
@@ -117,13 +133,14 @@ class LoginScreenState extends State<LoginScreen> {
         child: Container(
           padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
           child: Form(
-            key: _globalKey,
+            key: _loginFormKey,
             child: ListView(
               children: <Widget>[
                 SizedBox(height: screenHeight * 0.05),
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
+                    controller: emailController,
                     autovalidate: emailValidate, // autovalidate flag
                     validator: _validator.emailValidator, //validator function
                     onTap: () {
@@ -156,6 +173,7 @@ class LoginScreenState extends State<LoginScreen> {
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: TextFormField(
+                    controller: passwordController,
                     autovalidate: passwordValidate, // autovalidate flag
                     validator:
                         _validator.passwordValidator, //validator function
@@ -266,19 +284,16 @@ class LoginScreenState extends State<LoginScreen> {
                       // Display alert dialog
                       createAlertDialog(context).then((onValue) {
                         if (onValue.isNotEmpty &&
-                            _validator.passwordValidator(onValue) != null) {
+                            _validator.passwordValidator(onValue) == null) {
                           // Display Success SnackBar
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text('Updated Password Successfuly')));
+                          showSnackBar('Updated Password Successfuly');
                           setState(() {
                             // Updating globle password
                             globalPassword = onValue;
                           });
                         } else {
                           // Display SnackBar for invalid password
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              duration: Duration(seconds: 2),
-                              content: Text('Invalid Password ! Try Again')));
+                          showSnackBar('Invalid Password ! Try Again');
                         }
                       });
                     },
@@ -300,15 +315,16 @@ class LoginScreenState extends State<LoginScreen> {
                       style: style,
                     ),
                     onPressed: () {
-                      if (_globalKey.currentState.validate()) {
+                      if (_loginFormKey.currentState.validate()) {
                         if (confirmPasswordController.text == globalPassword) {
-                          _globalKey.currentState.save();
+                          _loginFormKey.currentState.save();
+                          passwordController.text = '';
+                          confirmPasswordController.text = '';
+
                           //save data fields here to use further in app
                           Navigator.pushNamed(context, '/home_screen');
                         } else {
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                              duration: Duration(seconds: 2),
-                              content: Text('Wrong Password!')));
+                          showSnackBar('Wrong Password!');
                         }
                       }
                     },
